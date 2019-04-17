@@ -30,13 +30,17 @@ r svnserver
 }' /etc/profile
 rm -rf svnserver
 
-wget -c $DLL/conf/svnserve
+mkdir /svnroot
+svnserve -d -r /svnroot
+
+wget -c https://raw.githubusercontent.com/jinchengjiang/shell-script/master/conf/svnserve
 mv svnserve /etc/init.d/svnserve
 
 chmod +x /etc/init.d/svnserve         
 chkconfig --add svnserve 
 chkconfig svnserve on
-service svnserve start
+service svnserve restart
+
 
 
 echo "============================SVNService install completed============================"
