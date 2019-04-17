@@ -42,7 +42,7 @@ if [ "$1" != "--help" ]; then
 	domainC=`echo $domain | awk -F . '{print  $3}'`
 
 
-	svndir=/www/svnroot/$domainB.$domainC/$domainA
+	svndir=/svnroot/$domainB.$domainC/$domainA
 
         if [ ! -d "$svndir" ]; then
         echo "==========================="
@@ -238,25 +238,18 @@ export LANG=en_US.UTF-8
 
 chown -R www:www $svnwww
 chmod -R 755 $svnwww
-#chmod -R 777 /www/wwwroot/daobidao.com/$domainB.$domainC/cache
-#chmod -R 777 /www/wwwroot/daobidao.com/$domainB.$domainC/data
 eof
 
 chmod +x $svndir/hooks/post-commit
-
-#/usr/local/svnserve/bin/svn co svn://localhost/$domainB.$domainC/$domainA/{} $svnwww/{}
 
 /usr/local/svnserve/bin/svn export --force svn://localhost/$domainB.$domainC/$domainA $svnwww
 
 echo "========================================================================="
 echo "Add Virtual Host for SVN"
 echo "========================================================================="
-echo ""
 echo "Your SVN: svn://$domain/$domainB.$domainC/$domainA"
 echo "Your SVNUSRE: $domainB"
 echo "Your SVNPWD: $svnpwd"
-echo ""
 echo "========================================================================="
 	
 fi
-
