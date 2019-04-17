@@ -12,7 +12,7 @@ function installsvnserver()
 {
 echo "============================SVNService install begin============================"
 cd /tmp
-yum install gcc -y
+yum install gcc openssl-devel -y
 wget -c https://raw.githubusercontent.com/jinchengjiang/shell-script/master/svn/subversion-1.6.18.tar.gz
 wget -c https://raw.githubusercontent.com/jinchengjiang/shell-script/master/svn/subversion-deps-1.6.18.tar.gz
 mkdir software
