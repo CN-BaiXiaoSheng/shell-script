@@ -1,0 +1,42 @@
+#!/bin/sh
+# chkconfig: 2345 55 25
+# Description: Startup script for svnserver.
+. /etc/rc.d/init.d/functions
+# pull in sysconfig settings
+SVN_HOME="/svnroot "
+SVNSERVE="/usr/local/svnserve/bin/svnserve"
+prog="svnserve"
+RETVAL=0
+case "$1" in
+ start)
+        echo -n "Starting $prog:"
+        $SVNSERVE -d -r $SVN_HOME && success || failure
+                RETVAL=$?
+        [ "$RETVAL" = "$?" ] && touch /var/lock/subsys/svn
+echo
+;;
+ stop)
+        echo -n $"Stopping $prog:"
+if [ -n "`pidofproc $SVNSERVE`" ];then
+        killproc $SVNSERVE
+else
+        failure $"Stopping $prog"
+fi
+        RETVAL=$?
+if [ "x$runlevel" = x0 -o "x$runlevel" = x6 ] ; then
+        killall $prog 2>/dev/null
+fi
+        [ "$RETVAL" = 0 ] && rm -f /var/lock/subsys/svn
+echo
+;;
+ restart)
+        $0 stop
+        $0 start
+;;
+ status)
+        status $SVNSERVE
+;;
+*)
+echo "Usage: svnserve { start|stop|restart|status } "
+exit 1
+esac
