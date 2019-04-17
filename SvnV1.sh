@@ -31,6 +31,8 @@ r svnserver
 }' /etc/profile
 rm -rf svnserver
 
+source /etc/profile
+
 mkdir /svnroot
 svnserve -d -r /svnroot
 
