@@ -53,11 +53,11 @@ char=`get_char`
 
 sed -i '/# set from=/a\set from='$smtpuser'' /usr/local/mutt/etc/Muttrc
 sed -i '/# set use_from=yes/a\set use_from=yes' /usr/local/mutt/etc/Muttrc
-sed -i '/# set realname=""/a\set realname="DaoBiDao SyStem Mail"' /usr/local/mutt/etc/Muttrc
+sed -i '/# set realname=""/a\set realname="SyStem Mail"' /usr/local/mutt/etc/Muttrc
 sed -i '/# set smtp_pass=""/a\set smtp_pass='$smtppasswd'' /usr/local/mutt/etc/Muttrc
 sed -i '/# set smtp_url=""/a\set smtp_url=smtps://'$smtpuser'@'$smtphost':'$smtpport'/' /usr/local/mutt/etc/Muttrc
 sed -i '/# set use_envelope_from=no/a\set use_envelope_from=yes' /usr/local/mutt/etc/Muttrc
-sed -i '/# set editor=""/a\set editor="DaoBiDao"' /usr/local/mutt/etc/Muttrc
+sed -i '/# set editor=""/a\set editor="SyStem Mail"' /usr/local/mutt/etc/Muttrc
 sed -i '/# set charset=""/a\set charset="utf-8"' /usr/local/mutt/etc/Muttrc
 sed -i '/# set copy=yes/a\set copy=no' /usr/local/mutt/etc/Muttrc
 
